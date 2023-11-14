@@ -11,4 +11,13 @@ async function main() {
      console.log(completion.choices[0]); 
     } 
     
-    main();
+main();
+
+async function GPTprompt(i) {
+    const completion = await openai.chat.completions.create({ 
+        messages: [{ role: "system", content: i }],
+        model: "gpt-3.5-turbo",
+     }); 
+     
+     console.log(completion.choices[0]); 
+}
