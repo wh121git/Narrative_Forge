@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Main Page</title>
+
+<style>
+
+    body {
+        font-family: 'Roboto', sans-serif;
+        background-color:#212f38;
+    }
+
+    .thing {
+        background-color: #040404;
+        padding: 10px 0;
+        text-align: right;
+    }
+
+
+    .thing a {
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 0 10px;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+
+    .thing a:hover {
+        background-color: #47494b; 
+    }
+
+    .text-entry {
+        width: 80%;
+        height: 200px; 
+        padding: 10px;
+        font-size: 16px;
+    }
+
+    .submit-button {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .boxy {
+            width: 100%;
+        }
+
+    .boxy input[type="text"] {
+        width: calc(100% - 10px);
+        height: 100px; 
+        padding: 5px; 
+        box-sizing: border-box; 
+        margin-right: 10px; 
+    }
+
+    .boxy input[type="submit"] {
+        width: calc(100% - 10px); 
+        height: 40px; 
+        padding: 5px; 
+        box-sizing: border-box; 
+    }
+
+    .text-entry {
+        width: 100%;
+        height: 200px;
+        padding: 10px;
+        font-size: 16px;
+        box-sizing: border-box; /* Ensures padding and border are included in the width */
+    }
+
+    .container {
+        display: flex; /* Setting a black border around the container */
+        border-radius: 15px; /* Adding curved edges */
+        padding: 10px; /* Adjusting padding for the container */
+        width: 100%;
+    }
+
+    .box {
+        width: 50%;
+        padding: 10px;
+        margin-right: 10px;
+        margin-left:0px;
+        background-color: #f0f0f0;
+        border: 1px solid #0e0e0e;
+        border-radius: 10px; /* Adding curved edges to the boxes */
+    }
+
+    .container img {
+        display: block; /* Ensures the image is treated as a block element */
+        margin: 0 auto; /* Auto margins horizontally center the image */
+    }
+
+    button {
+        width: 100%;
+        background-color: #363643; /* Dark blue background color */
+        color: white; /* Text color */
+        padding: 15px;
+    }
+
+    .sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidebar a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidebar a:hover {
+  color: #f1f1f1;
+}
+
+.sidebar .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+.openbtn {
+  font-size: 20px;
+  cursor: pointer;
+  background-color: #111;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  width: 10%; /* Set width to 10% */
+  position: fixed; /* Fix it to the viewport */
+  top: 0; /* Position from the top */
+  left: 0; /* Position on the left */
+}
+
+.openbtn:hover {
+  background-color: #444;
+}
+
+.main {
+  transition: margin-left .5s;
+  padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidebar {
+    padding-top: 15px;
+  }
+  .sidebar a {
+    font-size: 18px;
+  }
+}
+
+.content {
+  flex: 1;
+  /* Other styles for your content area */
+}
+
+.bottom-buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #f0f0f0; /* Optional background color */
+}
+.bottom-buttons button {
+  padding: 8px 20px;
+  margin: 0 5px;
+  /* Other button styles */
+}
+
+.slider-container {
+      width: 80%;
+      margin: 20px auto;
+      position: relative;
+    }
+
+    .slider {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 10px;
+      border-radius: 5px;
+      background: #d3d3d3;
+      outline: none;
+      opacity: 0.7;
+      transition: opacity 0.2s;
+    }
+
+    .slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #4CAF50;
+      cursor: pointer;
+    }
+
+    .stop-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+
+
+</style>
+</head>
+<body>
+    <!-- the header -->
+    <div class="thing">
+        <a href="#">Home</a>
+        <a href="#">Start Now</a>
+        <a href="#">Help</a>
+    </div>
+
+    <!-- the button to open the sidebar -->
+  <button class="openbtn" onclick="openNav()">☰ Open Sidebar</button>  
+  <div id="mySidebar" class="sidebar">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+    <a href="#">Language</a>
+    <a href="#">Accessability</a>
+    <a href="#">Download</a>
+</div>
+
+    <h1 style="color: white;">Enter your prompt here</h1>
+
+
+    <!-- the user enters the input here -->
+    <div class="boxy">
+        <form action="/submit_action" method="post">
+            <textarea name="inputField" placeholder="Enter your prompt here..." class="text-entry"></textarea>
+        </div>
+        <br>
+    <div class="boxy">
+            <input type="submit" value="Generate Now">
+        </form>
+    </div>
+    
+
+    <!-- the slider -->
+    
+    <div class="slider-container">
+        <input type="range" min="0" max="6" value="0" class="slider" id="mySlider">
+        <div class="stop-labels">
+          <span>Start</span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+          <span>Finish</span>
+        </div>
+      </div>
+
+
+
+
+    <h2 style="color: white;" > Your Options: </h2>
+
+
+    <!-- images that will be generated with the text to accomodate story telling -->
+    <div class="container">
+        <div class="box">
+            <button onclick="displayMessage()" width="100% ">Select Option 1</button>
+            <p>In a small town where laughter once echoed, young Emily battled unseen demons. Her smiles, once radiant, now flickered like a dying flame. Each day, burdened by a pain unknown, she drifted into a world of shadows. Her tender heart, a repository of unspoken woes. An ocean of emotions, she concealed behind a facade of fleeting joy. The playground became her haven, where tears mingled with the evening dew. Yet, amidst the gloom, a spark of resilience glimmered. In those fleeting moments, hope whispered, promising that even the darkest nights eventually succumb to dawn's embrace</p>
+            <img src="ImageResources/image1.jpg" alt="the first generated image" width="300" height="200">
+        </div>
+        <div class="box">
+            <button onclick="displayMessage()">Select Option 2</button>
+            <p>Amidst the bustling city's symphony, young Sam navigated a silent, stormy world. His laughter, a distant memory, lost in the labyrinth of unspoken sorrow. The weight of grown-up worries bore heavy upon his small shoulders. Behind those innocent eyes lay a universe of unsaid prayers. In a cocoon of solitude, he sought solace, painting vibrant dreams on a canvas of isolation. His playground echoed with laughter, a facade veiling the silent struggles within. But the stars whispered secrets, urging him to endure. Within this young soul, resilience took root, reminding the world that within shadows, courage blossoms.</p>
+            <img src="ImageResources/image2.jpg" alt="the first generated image" width="300" height="200">
+        </div>
+    </div>
+
+
+    <!-- buttons at the very bottom -->
+    <div class="bottom-buttons">
+        <button onclick="RegerateNow()">Regenerate Options</button>
+        <button onclick="EndStory()">End Story Now</button>
+        <button onclick="GoBack()">Go Back</button>
+    </div>
+
+
+
+    <script>
+        function RegerateNow() {
+            console.log("Now put this as a prompt through the model - Hibah");
+        }
+
+        function EndStory() {
+            console.log("Now gather all the text and display it on a new html page - Hibah");
+        }
+
+        function GoBack() {
+            console.log("Somehow needs to act as a reroll - Hibah");
+        }
+
+        function displayMessage() {
+            console.log("Now put this as a prompt through the model - Hibah");
+        }
+        function openNav() {
+            document.getElementById("mySidebar").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+            document.getElementById("main").style.marginLeft= "0";
+        }
+
+
+        // The code to get the slider to work - it doesn't do what i want it to do but hopefully should be enough to screeenshot
+        const slider = document.getElementById('mySlider');
+        const stopLabels = document.querySelectorAll('.stop-labels span');
+
+        slider.addEventListener('input', () => {
+        const value = parseInt(slider.value);
+
+        // Update label at the current position
+        stopLabels.forEach((label, index) => {
+            if (index === value) {
+            label.textContent = value === 0 ? 'Start' : value === 6 ? 'Finish' : `Part ${value} of Story`;
+            } else {
+            label.textContent = '';
+            }
+        });
+        });
+
+    </script>
+
+
+
+</body>
+</html>
