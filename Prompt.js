@@ -14,10 +14,20 @@ async function main() {
 main();
 
 async function GPTprompt(i) {
-    const completion = await openai.chat.completions.create({ 
+    const completion1 = await openai.chat.completions.create({ 
         messages: [{ role: "system", content: i }],
         model: "gpt-3.5-turbo",
+
+     }); 
+
+     const completion2 = await openai.chat.completions.create({ 
+        messages: [{ role: "system", content: i }],
+        model: "gpt-3.5-turbo",
+
      }); 
      
      console.log(completion.choices[0]); 
+
+     document.getElementById("option1").innerHTML = completion1.choices[0];
+     document.getElementById("option2").innerHTML = completion2.choices[0];
 }
