@@ -1,0 +1,25 @@
+/* static/style.css */
+#chat-container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#chat {
+    min-height: 200px;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 10px;
+    padding-bottom: 10px;
+    overflow-y: auto;
+}
+
+#user-input {
+    width: 70%;
+    padding: 5px;
+}
+
+button {
+    padding: 5px;
+}
