@@ -131,6 +131,17 @@ function sendMessage() {
     })
     .then(response => response.json())
     .then(data => {
+
+    appendMessage('Bot', data.bot_response);
+        // Get the displayArea div
+    let displayArea = document.getElementById('displayArea');
+
+    // Set the innerHTML of the displayArea div to the response text
+    displayArea.innerHTML = data.bot_response;
+
+    // Make the displayArea visible
+    displayArea.style.display = 'block';
+
         // Get the image URL from the response
     let imageUrl = data.image_url;
 
@@ -143,7 +154,7 @@ function sendMessage() {
     imageContainer.appendChild(img);
 
     // Make the imageContainer visible
-    imageContainer.style.display = 'block';
+    imageContainer.style.display = 'flex';
 })
 .catch(error => console.error('Error:', error));
 

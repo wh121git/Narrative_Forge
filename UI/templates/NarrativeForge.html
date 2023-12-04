@@ -39,6 +39,14 @@
             margin: 0;
         }
 
+        #displayArea {
+            width: 90%;
+            height: 50vh; 
+            box-sizing: border-box;
+            margin: 0;
+            overflow-y: scroll;
+        }
+
 
         .headerContainer {
             width:100%;
@@ -139,7 +147,11 @@
             <button type="button" id="submitButton" onclick="sendMessage()" class="btn btn-primary" style="width: 66.5%;">Submit</button>
         </div> <br>
 
-        <div id="displayArea" style="max-width: 70%; margin: 0 auto; text-align: center; overflow-wrap: break-word;"></div>
+        <div id="displayArea" style="max-width: 70%; margin: 0 auto; text-align: center; overflow-wrap: break-word;">
+            <br><br><br>
+        </div>
+
+        <br><br><br>
 
         <div id="optionButtons" class="text-center" style="margin-top: 10px; display: none;">
             <button type="button" class="btn btn-primary" onclick="selectOption('option 1')" >Option 1</button>
