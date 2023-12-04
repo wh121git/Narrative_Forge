@@ -41,7 +41,7 @@
 
         #displayArea {
             width: 90%;
-            height: 30vh; 
+            height: 20vh; 
             box-sizing: border-box;
             margin: 0;
             overflow-y: scroll;
@@ -73,6 +73,7 @@
     </style>
 
 </head>
+
 <body>
 
 <div class="headerContainer">
@@ -91,13 +92,12 @@
                     <!-- Sidebar -->
                 <div class="w3-sidebar w3-bar-block w3-border-left" style="display:none; right: 0;" id="mySidebar">
                     <button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
-                    <a href="#" class="w3-bar-item w3-button">Download Story</a>
-                    <a href="NarrativeForge.html" class="w3-bar-item w3-button">Restart Generation</a>
+                    <a href="/download" class="w3-bar-item w3-button" Download>Download Story</a>
+                    <a href="javascript:void(0);" onclick="w3_close(); location.reload();" class="w3-bar-item w3-button">Restart Generation</a>
                     <a href="https://www.google.co.uk/" class="w3-bar-item w3-button">Learn More</a>
                 </div>
                 
                 <button class="w3-button w3-teal w3-xlarge" onclick="w3_open()">☰</button>
-  
 
 
                 </ul>
@@ -137,7 +137,7 @@
     <form id="promptEntry">
         <div class="row justify-content-center">
             <div class="col-md-8"> 
-                <textarea rows="5" id="myInput" placeholder="Type something to kick off your story..." class="form-control" style="width: 100%;"></textarea>
+                <textarea rows="5" id="myInput" placeholder="Lets begin with a character name..." class="form-control" style="width: 100%;"></textarea>
             </div>
         </div>
     
@@ -153,7 +153,7 @@
 
         <br><br><br>
 
-        <div id="optionButtons" class="text-center" style="margin-top: 10px; display: none;">
+        <div class="text-center" style="margin-top: 10px; display: block;">
             <button type="button" class="btn btn-primary" onclick="selectOption('option 1')" >Option 1</button>
             <button type="button" class="btn btn-primary" onclick="selectOption('option 2')" >Option 2</button>
             <br><br><br>

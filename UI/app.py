@@ -1,5 +1,5 @@
 """ Flask app to run a server """
-from flask import Flask, render_template, request, jsonify, Response
+from flask import Flask, render_template, request, jsonify, Response, send_file
 import openai
 #from openai import OpenAI
 #client = OpenAI(
@@ -9,17 +9,35 @@ import openai
 app = Flask(__name__)
 
 # Set your OpenAI API key here
-openai.api_key = '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'
+openai.api_key = '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'
 
 @app.route('/')
 
 def home():
     """Render the home page"""
-    return render_template('NarrativeForge.html')
+    return render_template('index.html')
 
 messages = [
-    {"role": "system", "content": "You are a helpful assistant."},
+    {"role": "system", "content": "You are a helpful story writing assistant. we are going to play a game where you generate a story. this game has 5 parts to it. the introduction, rising action, climax, falling action and conclusion. for every part, you need to generate two options and let me select an option continue the story and move on to the next part. focus on how the story is told. we should be working on: narrators voice point of view narrative style temporal sequencing use of literary devices. the conclusion part does not need option selection and should proceed to end the story. I'm going to give you a theme and character to start of with. each section should be limited to about 120 words. "},
 ]
+
+@app.route('/write_to_file', methods=['POST'])
+def write_to_file():
+    """
+    Write user and bot messages to a file.
+    """
+    data = request.get_json()
+    with open('conversation.txt', 'a', encoding='utf-8') as f:
+        f.write('User: ' + data['user'] + '\n')
+        f.write('Bot: ' + data['bot'] + '\n')
+    return '', 200
+
+@app.route('/download')
+def download_file():
+    """
+    Download the conversation file.
+    """
+    return send_file('conversation.txt', as_attachment=True)
 
 @app.route('/generate_response', methods=['POST'])
 def generate_response():
@@ -42,17 +60,18 @@ def generate_response():
 
     bot_response = ai_response
 
+
     # Append the bot_response to the conversation history(messages array)
     messages.append({"role": "assistant", "content": bot_response})
 
-    # generate an image with dall-e using the users prompt
+# generate an image with dall-e using the users prompt
     image_response = openai.images.generate(
         model = "dall-e-3",
         prompt = user_input + bot_response,
         size = "1024x1024",
         quality = "standard",
         n=1,
-    )
+)
 
     print (image_response.__dict__)
     image_url = image_response.data[0].url

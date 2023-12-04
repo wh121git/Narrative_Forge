@@ -93,13 +93,15 @@ function w3_close() {
 
 // get the selected option
 function selectOption(option) {
-    selectedOption = option;
-    // alert("Selected Option: " + selectedOption);
+    // Set the value of the textarea
+    document.getElementById('myInput').value = option;
 
      // Move to the next stop in the story scale
      if (scalePosition < storyScale.length - 1) {
         scalePosition++;
         updateScale();
+    // Call the sendMessage function
+    sendMessage();    
     }
 
     // Check if it's the last stop, then disable the buttons
@@ -115,6 +117,9 @@ function selectOption(option) {
 }
 
 // js/script.js
+
+
+
 function sendMessage() {
     let userInput = document.getElementById('myInput').value;
 
@@ -133,6 +138,18 @@ function sendMessage() {
     .then(data => {
 
     appendMessage('Bot', data.bot_response);
+
+    fetch('/write_to_file', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            user: userInput,
+            bot: data.bot_response,
+        }),
+    });
+
         // Get the displayArea div
     let displayArea = document.getElementById('displayArea');
 
@@ -165,6 +182,8 @@ function sendMessage() {
    // })
     //.catch(error => console.error('Error:', error));    
 }
+
+    
 
 
 function appendMessage(sender, message) {
