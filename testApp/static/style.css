@@ -23,3 +23,9 @@
 button {
     padding: 5px;
 }
+
+.img-response {
+    width: 512px;
+    height: 512px;
+    object-fit: cover; /* This will ensure the image maintains its aspect ratio */
+}
