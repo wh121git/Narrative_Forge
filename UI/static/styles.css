@@ -11046,3 +11046,10 @@ html {
 .copyright {
   background-color: #1a252f;
 }
+
+img {
+  position: relative;
+  width: 20%;
+  height: 20%;
+  overflow: hidden;
+}
