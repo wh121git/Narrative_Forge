@@ -42,6 +42,32 @@ def generate_response():
 
     bot_response = ai_response
 
+    '''
+    rating = 0
+    while(rating < 3):
+
+            # Call the OpenAI API to validate response
+        response = openai.chat.completions.create(
+            messages="Insert response validator: " + bot_response,
+            model="gpt-3.5-turbo",
+        )
+        rating = parseint(response.choices[0].message.content)
+
+        if(rating < 3):
+                # Call the OpenAI API to get a response
+                response = openai.chat.completions.create(
+                messages=messages,
+                model="gpt-3.5-turbo",
+            )
+                ai_response = response.choices[0].message.content
+                print(ai_response)
+                if not isinstance(ai_response, str):
+                    print(f"Unexpected response type: {type(ai_response)}")
+                    return jsonify({'bot_response': 'An error occurred'})
+
+                bot_response = ai_response
+    '''
+
     # Append the bot_response to the conversation history(messages array)
     messages.append({"role": "assistant", "content": bot_response})
 
@@ -57,7 +83,10 @@ def generate_response():
     print (image_response.__dict__)
     image_url = image_response.data[0].url
 
+
+
     return jsonify({'bot_response': bot_response, 'image_url': image_url})
+
 
 if __name__ == '__main__':
     app.run(debug=True, port=5001)
