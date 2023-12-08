@@ -153,6 +153,22 @@ function sendMessage() {
         // Get the displayArea div
     let displayArea = document.getElementById('displayArea');
 
+    /*
+    // Split response
+    let responseArray = data.bot_response.split(" ");
+
+    // Format Text
+    responseArray.forEach(word => {
+        if(word == "Option")
+        {
+            word = "\nOption";
+        }
+    });
+
+    // Set the innerHTML of the displayArea div to the response text
+    //displayArea.innerHTML = data.bot_response;
+    */
+   
     // Set the innerHTML of the displayArea div to the response text
     displayArea.innerHTML = data.bot_response;
 
