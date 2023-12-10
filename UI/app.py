@@ -12,14 +12,22 @@ app = Flask(__name__)
 openai.api_key = 'Api_KEY'
 
 @app.route('/')
-
 def home():
     """Render the home page"""
     return render_template('index.html')
 
+@app.route('/narrative_forge')
+def narrative_forge():
+    """Render the NarrativeForge page"""
+    return render_template('NarrativeForge.html')
+
 messages = [
-    {"role": "system", "content": "You are a helpful story-writing assistant. We are going to play a game where you generate a story. This game has 5 parts to it: the introduction, rising action, climax, falling action, and conclusion. For every part, you need to generate two options. Let me select an option to continue the story and move on to the next part. Each part should not exceed 120 words. The conclusion is the exception, as the part does not need option selection and should end the story. Only provide one part at a time; a part should not be repeated or continued but moved straight onto the next. Clearly label each option as 'option 1' or 'option 2'. I will give you a theme and character to start with. "},
+{"role": "system", "content": "Create a story with five parts: introduction, rising action, climax, falling action, and conclusion. For each part, present two options. Allow the user to choose between the options to determine the direction of the story. Each part should be under 120 words. The conclusion is an exception and doesn't require options. Provide one part at a time, and please do not repeat any parts under any circumstances. refer back to the previous responses to make sure no part is repeated. Clearly label options as 'Option 1' or 'Option 2' after each user choice. I will give you a theme and character to initiate the story."},
 ]
+
+messages_string = [message['content'] for message in messages]
+
+conversation_history = ' '.join(messages_string)
 
 @app.route('/write_to_file', methods=['POST'])
 def write_to_file():

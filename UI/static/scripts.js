@@ -120,6 +120,7 @@ function selectOption(option) {
 
 
 
+
 function sendMessage() {
     let userInput = document.getElementById('myInput').value;
 
@@ -153,7 +154,7 @@ function sendMessage() {
         // Get the displayArea div
     let displayArea = document.getElementById('displayArea');
 
-    /*
+    
     // Split response - Will's version
     let responseArray = data.bot_response.split(" ");
 
@@ -166,8 +167,8 @@ function sendMessage() {
     });
 
     // Set the innerHTML of the displayArea div to the response text
-    //displayArea.innerHTML = data.bot_response;
-    */
+    // displayArea.innerHTML = data.bot_response;
+    
 
 
 
@@ -191,7 +192,7 @@ function sendMessage() {
 
     
     // Set the innerHTML of the displayArea div to the response text
-    displayArea.innerHTML = data.bot_response;
+    // displayArea.innerHTML = data.bot_response;
 
     // Make the displayArea visible
     displayArea.style.display = 'block';
@@ -221,11 +222,15 @@ function sendMessage() {
 }
 
     
-
+function sanitizeHTML(text) {
+    const element = document.createElement('div');
+    element.innerText = text;
+    return element.innerHTML;
+}
 
 function appendMessage(sender, message) {
     let chatContainer = document.getElementById('displayArea');
-    chatContainer.innerHTML += `<p><strong>${sender}:</strong> ${message}</p>`;
+    chatContainer.innerHTML = `<b>${sender}</b>: <p style="white-space: pre-line;">${sanitizeHTML(message)}</p>`;
 }
 
 function appendImage(imageUrl) {

@@ -8,7 +8,15 @@
     <title>Narrative Forge</title>
     <link rel="icon" type="image/x-icon" href="./assets/favicon.ico" />
     <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <!-- jQuery CDN -->
     <script src="static/scripts.js"></script>
+    <script>
+        $(document).ready(function() {
+            let bot_response = $('#displayArea').text();
+            bot_response = bot_response.replace(/\n/g, '<br>');
+            $('#displayArea').html(bot_response);
+        });
+    </script>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
     <link href="static/styles.css" rel="stylesheet" />
@@ -86,8 +94,8 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="index.html">Home</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#about">Use NarriForge</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{ url_for('home') }}">Home</a></li>
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="{{ url_for('narrative_forge') }}">Use NarriForge</a></li>
 
                     <!-- Sidebar -->
                 <div class="w3-sidebar w3-bar-block w3-border-left" style="display:none; right: 0;" id="mySidebar">
@@ -147,15 +155,15 @@
             <button type="button" id="submitButton" onclick="sendMessage()" class="btn btn-primary" style="width: 66.5%;">Submit</button>
         </div> <br>
 
-        <div id="displayArea" style="max-width: 70%; margin: 0 auto; text-align: center; overflow-wrap: break-word;">
+        <div id="displayArea" style="max-width: 72%; margin: auto; text-align: center; overflow-wrap: break-word;">
             <br><br><br>
         </div>
 
         <br><br><br>
 
         <div class="text-center" style="margin-top: 10px; display: block;">
-            <button type="button" class="btn btn-primary" onclick="selectOption('option 1')" >Option 1</button>
-            <button type="button" class="btn btn-primary" onclick="selectOption('option 2')" >Option 2</button>
+            <button type="button" class="btn btn-primary" onclick="selectOption('option 1')">Option 1</button>
+            <button type="button" class="btn btn-primary" onclick="selectOption('option 2')">Option 2</button>
             <br><br><br>
         </div>
 
