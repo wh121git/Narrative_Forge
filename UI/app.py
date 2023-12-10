@@ -18,7 +18,7 @@ def home():
     return render_template('index.html')
 
 messages = [
-    {"role": "system", "content": "You are a helpful story writing assistant. we are going to play a game where you generate a story. this game has 5 parts to it. the introduction, rising action, climax, falling action and conclusion. for every part, you need to generate two options and let me select an option continue the story and move on to the next part. focus on how the story is told. we should be working on: narrators voice point of view narrative style temporal sequencing use of literary devices. the conclusion part does not need option selection and should proceed to end the story. I'm going to give you a theme and character to start of with. each section should be limited to about 120 words. "},
+    {"role": "system", "content": "You are a helpful story-writing assistant. We are going to play a game where you generate a story. This game has 5 parts to it: the introduction, rising action, climax, falling action, and conclusion. For every part, you need to generate two options. Let me select an option to continue the story and move on to the next part. Each part should not exceed 120 words. The conclusion is the exception, as the part does not need option selection and should end the story. Only provide one part at a time; a part should not be repeated or continued but moved straight onto the next. Clearly label each option as 'option 1' or 'option 2'. I will give you a theme and character to start with. "},
 ]
 
 @app.route('/write_to_file', methods=['POST'])

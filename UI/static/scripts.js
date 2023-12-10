@@ -113,7 +113,7 @@ function selectOption(option) {
         // Function to disable the option buttons
     function disableOptionButtons() {
     document.getElementById("optionButtons").style.pointerEvents = "none";
-    alert("You have reached the end of the story, you can no longer change the narrative.");
+    alert("You have reached the end of the story, you can no longer change the narrative. Thanks for using our application!");
 }
 
 // js/script.js
@@ -143,7 +143,7 @@ function sendMessage() {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-        },
+        },              
         body: JSON.stringify({
             user: userInput,
             bot: data.bot_response,
