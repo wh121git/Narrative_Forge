@@ -154,7 +154,7 @@ function sendMessage() {
     let displayArea = document.getElementById('displayArea');
 
     /*
-    // Split response
+    // Split response - Will's version
     let responseArray = data.bot_response.split(" ");
 
     // Format Text
@@ -168,7 +168,28 @@ function sendMessage() {
     // Set the innerHTML of the displayArea div to the response text
     //displayArea.innerHTML = data.bot_response;
     */
-   
+
+
+
+
+
+    // // spliiting response - Hibah's version
+    // let responseArray = data.bot_response.split(" ");
+
+    // responseArray = responseArray.map(word => {
+    //     if (word === "Option") {
+    //         return "\nOption";
+    //     }
+    //     return word;
+    // });
+
+    // let formattedResponse = responseArray.join(" ");
+
+
+
+
+
+    
     // Set the innerHTML of the displayArea div to the response text
     displayArea.innerHTML = data.bot_response;
 
